@@ -1,0 +1,28 @@
+create table if not exists genre (
+id SERIAL PRIMARY KEY, 
+name VARCHAR(40) not null
+);
+
+CREATE TABLE IF NOT EXISTS actors (
+id SERIAL PRIMARY KEY, 
+name VARCHAR(40) not null unique,
+genre_id integer references genre(id) not null
+);
+
+create table if not exists albums (
+id SERIAL PRIMARY KEY, 
+title VARCHAR(40) not null, 
+year integer check(year>1900) not null,
+actors_id integer references actors(id) not null
+);
+
+create table if not exists tracks (
+id SERIAL PRIMARY KEY, 
+title VARCHAR(40) not null, 
+duration integer not null,
+albums_id integer references albums(id) not null
+);
+
+
+
+
